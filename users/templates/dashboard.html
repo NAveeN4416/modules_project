@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<h2 class="text-center">Welcome Mr.{{ request.user.username }}</h2>
+<a href="{% url 'users:users_list' %}" class="text-right"><b>Users List</b></a>
+<a href="{% url 'users:logout' %}" class="text-right">Logout</a>
+
+
+{% endblock content %}
