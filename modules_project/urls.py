@@ -19,11 +19,13 @@ from django.conf.urls import url
 
 from django.conf             import settings
 from django.conf.urls.static import static
-from apis.views import UserViewSet
+from apis.views import UserViewSet, UserMViewSet
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-router.register(r'users', UserViewSet)
+router.register(r'users', UserViewSet.as_view({'get':'list'}),'users-list')
+router.register(r'user/(?P<pk>[0-9]+)/', UserViewSet.as_view({'get':'detail'}),'users-detail')
+# router.register(r'user/(?P<pk>[^/.]+)/', UserViewSet.as_view({'get':'retrive'}))
 
 
 urlpatterns = [
