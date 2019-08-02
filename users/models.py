@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 class UserDetails(models.Model):
 
-	user  		   = models.OneToOneField(User, on_delete=models.CASCADE)
+	user  		   = models.OneToOneField(User,related_name="user_details", on_delete=models.CASCADE)
 	image 		   = models.FileField(upload_to='user_profilepics')
 	phone_number   = models.CharField(max_length=10)
 	gender		   = models.IntegerField(default=0)

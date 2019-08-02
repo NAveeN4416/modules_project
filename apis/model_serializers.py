@@ -2,6 +2,8 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 from users.models import UserDetails
 
+
+
 # Serializers define the API representation.
 class UserSerializer(serializers.Serializer):
 
@@ -17,9 +19,18 @@ class UserSerializer(serializers.Serializer):
 	# 	model = User
 	# 	fields = ['username','first_name','last_name','email','is_staff','is_active','date_joined','url'] #'__all__' #
 
+
+
 # Serializers define the API representation.
 class UserMSerializer(serializers.ModelSerializer):
 
 	class Meta:
 	 	model = User
-	 	fields = ['username','first_name','last_name','email','is_staff','is_active','date_joined','url'] #'__all__' #
+	 	fields = ['username','first_name','last_name','email','is_staff','is_active','date_joined'] #'__all__' #
+
+
+class UserdetailsSerializer(serializers.ModelSerializer):
+
+	class Meta:
+		model  = UserDetails
+		fields = ['image','phone_number','address','device_type','device_token','role']

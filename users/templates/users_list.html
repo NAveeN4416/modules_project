@@ -14,6 +14,7 @@
 	    <h5 class="card-title">{{ user.username }}</h5>
 	    <p class="card-text">{{ user.email }}</p>
 	    <p class="card-text">Last login : {{ user.last_login }}</p>
+	    <a href="http://localhost:8000/apis/users/{{user.id}}" target="_blank">View Details</a>
 	  </div>
 	</div>
 	<hr>

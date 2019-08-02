@@ -22,18 +22,26 @@ from django.conf.urls.static import static
 from apis.views import UserViewSet, UserMViewSet
 from rest_framework import routers
 
+#API view urls
 router = routers.DefaultRouter()
-router.register(r'users', UserViewSet.as_view({'get':'list'}),'users-list')
-router.register(r'user/(?P<pk>[0-9]+)/', UserViewSet.as_view({'get':'detail'}),'users-detail')
-# router.register(r'user/(?P<pk>[^/.]+)/', UserViewSet.as_view({'get':'retrive'}))
+router.register(r'users', UserMViewSet)
+
+urlpatterns = [ url(r'^apis/', include(router.urls))]
 
 
-urlpatterns = [
-			    url(r'^apis/', include(router.urls)),
+#For Web
+urlpatterns += [
                 url(r'^admin/', admin.site.urls),
 			    url(r'^dashboard/', include("dashboard.urls", namespace="dashboard")),
                 url(r'^users/', include("users.urls", namespace="users")),
-			]
+			  ]
+
+
+urlpatterns += [
+                    url(r'^as_views/users/$', UserViewSet.as_view({'get':'list'})),
+                    url(r'^as_views/users/(?P<pk>[^/.]+)/', UserViewSet.as_view({'get':'retrieve'})),
+                ]
+
 
 
 if settings.DEBUG:
